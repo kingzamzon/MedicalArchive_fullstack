@@ -1,22 +1,22 @@
 //SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
 
-contract Dropbox {
+contract MedArchive {
 
 
     address private s_owner;
 
-    struct FolderItem {
+    struct FolderRecord {
         uint256 id;
-        string name;
+        uint256 date;
         string description;
         string Cid;
     }
 
     struct Folder {
-        uint256 id;
-        string name;
-        FolderItem[] items;
+        uint256 PatientId;
+        string PatientName;
+        FolderRecord[] records;
     }
     constructor() {
         s_owner=msg.sender;
