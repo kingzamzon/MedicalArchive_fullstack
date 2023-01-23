@@ -7,21 +7,22 @@ contract MedArchive {
     address private s_owner;
 
 
-    // struct FolderRecord {
-    //     uint256 id;
-    //     uint256 date;
-    //     string description;
-    //     string Cid;
-    // }
-
-    struct Folder {
-        uint256 patientId;
-        string patientName;
-        string[] recordsCid;
+    struct PatientRecord {
+        uint256 id;
+        uint256 date;
+        string description;
+        string Cid;
     }
 
-    mapping (address => uint256) private s_customerIds;
-    mapping (address =>mapping (uint256 => Folder[])) private s_hospitalRecords;
+    struct Patient {
+        uint256 patientId;
+        string patientName;
+       
+    }
+
+    mapping (address => uint256) private s_patientIds;
+    mapping (address =>mapping (uint256 => Patient[])) private s_hospitalPatients;
+    mapping (address =>mapping (uint256 => PatientRecord[])) private s_hospitalRecords;
 
     event PatientAdded(address indexed hospitalAddress,uint256 id);
 
@@ -30,11 +31,10 @@ contract MedArchive {
     }
 
     function addPatient(string calldata _patientName) external {
-        uint256 id= s_customerIds[msg.sender]+=1;
-        s_hospitalRecords[msg.sender][id].push(Folder({
+        uint256 id= s_patientIds[msg.sender]+=1;
+        s_hospitalPatients[msg.sender][id].push(Patient({
             patientId:id,
-            patientName:_patientName,
-            recordsCid:new string[](0)
+            patientName:_patientName
             }));
         emit PatientAdded(msg.sender,id);
     }
