@@ -14,21 +14,21 @@ const { expect, assert } = require("chai");
               MedArchive = await ethers.getContract("MedArchive", deployer);
           });
 
-          describe("constructor",()=>{
-            it("add the correct owner address", async()=>{
-                const owner= await MedArchive.s_owner();
-                assert.equal(owner, deployer);
-            });
+          describe("constructor", () => {
+              it("add the correct owner address", async () => {
+                  const owner = await MedArchive.s_owner();
+                  assert.equal(owner, deployer);
+              });
           });
 
-          describe("add Patint ",()=>{
-            it("should emit correct user id",async()=>{
-                const tx=await MedArchive.addPatient("Ada");
-                
-                let receipt= await tx.wait(1);
-                // console.log(receipt)
-                let {hospitalAddress,id}= receipt.events[0].args;
-                assert.equal(id.toString(),1);
-            });
+          describe("add Patint ", () => {
+              it("should emit correct user id", async () => {
+                  const tx = await MedArchive.addPatient("Ada");
+
+                  let receipt = await tx.wait(1);
+                  // console.log(receipt)
+                  let { hospitalAddress, id } = receipt.events[0].args;
+                  assert.equal(id.toString(), 1);
+              });
           });
       });
