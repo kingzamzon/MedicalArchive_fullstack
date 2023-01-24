@@ -24,7 +24,7 @@ contract MedArchive {
     mapping(address => mapping(uint256 => PatientRecord[])) private s_hospitalRecords;
     mapping(address => PatientRecord[]) private s_sharedRecords;
 
-    event PatientAdded(address indexed hospitalAddress, uint256 id);
+    event PatientAdded(address indexed hospitalAddress, uint256 patientId);
     event NewRecord(address indexed hospitalAddress, uint256 indexed patientId, uint256 recordId);
     event PatientShared(
         address indexed hospitalAddress,
