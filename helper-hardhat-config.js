@@ -3,7 +3,6 @@ const { ethers } = require("hardhat");
 const networkConfig = {
     31337: {
         name: "localhost",
-        
     },
     default: {
         name: "hardhat",

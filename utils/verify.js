@@ -16,4 +16,4 @@ const verify = async (ContractAddress, args) => {
     }
 };
 
-module.exports={verify}
+module.exports = { verify };
