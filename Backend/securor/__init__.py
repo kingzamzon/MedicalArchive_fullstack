@@ -1,15 +1,33 @@
 from flask import Flask, request, abort, jsonify
 from flask_cors import CORS
 from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import os
+import base64
 
 
 def create_app(test_config=None):
     app = Flask(__name__)
     CORS(app)
 
-    KEY = os.getenv("FERNET_KEY")
-    # f = Fernet(bytes(KEY, "utf-8"))
+    def kdf():
+        return PBKDF2HMAC(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=bytes(os.getenv("FERNET_KEY"), "utf-8"),
+            iterations=480000,
+        )
+
+    def get_key(password):
+        return base64.urlsafe_b64encode(kdf().derive(bytes(password, "utf-8")))
+
+    def decrypt(data, password):
+        try:
+            result = bytes(data, "utf-8")
+            return Fernet(get_key(password)).decrypt(result).decode()
+        except Exception as e:
+            abort(403)
 
     @app.after_request
     def after_request(response):
@@ -19,10 +37,6 @@ def create_app(test_config=None):
         response.headers.add("Access-Control-Allow-Methods", "GET")
         response.headers.add("Access-Control-Allow-Origin", "*")
         return response
-
-    def decrypt(data,password=""):
-        result = bytes(data, "utf-8")
-        return Fernet(bytes(KEY + password, "utf-8")).decrypt(result).decode()
 
     @app.route("/encode", methods=["GET"])
     def encrypt_data():
@@ -35,25 +49,34 @@ def create_app(test_config=None):
                 {
                     "status": 200,
                     "success": True,
-                    "hash": Fernet(bytes(KEY + password, "utf-8")).encrypt(cid.encode()).decode(),
+                    "hash": Fernet(get_key(password)).encrypt(cid.encode()).decode(),
                 }
             ),
-            200
+            200,
         )
 
     @app.route("/decode", methods=["GET"])
     def decrypt_data():
         data = request.get_json()
         cids = data["cids"]
-        password = data["password"] 
-        hashes = map(lambda ids: decrypt(ids,password=password), cids)
+        password = data["password"]
+        hashes = map(lambda ids: decrypt(ids, password=password), cids)
         return jsonify(
-                {
-                "status": 200,
+            {
+                "status": 200, 
                 "success": True, 
                 "cids": list(hashes)
-                }
-            ), 200
+            }
+        ), 200
+
+    @app.errorhandler(403)
+    def method_not_allowed(error):
+        return (jsonify(
+            {
+                "status": 403, 
+                "message": "Forbidden", 
+                "success": False
+            }), 403)
 
     @app.errorhandler(405)
     def method_not_allowed(error):
@@ -65,7 +88,7 @@ def create_app(test_config=None):
                     "success": False
                 }
             ),
-            405
+            405,
         )
 
     @app.errorhandler(422)
@@ -78,7 +101,7 @@ def create_app(test_config=None):
                     "message": "Request unprocessable"
                 }
             ),
-            422
+            422,
         )
 
     @app.errorhandler(400)
@@ -96,11 +119,11 @@ def create_app(test_config=None):
             jsonify(
                 {
                     "status": 500, 
-                    "success": False, 
-                    "message": "Internal server error"
+                    "success": False, "message": 
+                    "Internal server error"
                 }
             ),
-            500
+            500,
         )
 
     return app
