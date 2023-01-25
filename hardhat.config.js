@@ -10,7 +10,7 @@ require("dotenv").config();
 /** @type import('hardhat/config').HardhatUserConfig */
 const PRIVATE_KEY1 = process.env.PRIVATE_KEY;
 // const COINMARKETCAP_API = process.env.COINMARKETCAP_API;
-const ETHERSCAN_API = process.env.ETHERSCAN_API;
+const FILESCAN_API = process.env.FILESCAN_API;
 module.exports = {
     defaultNetwork: "hardhat",
     networks: {
@@ -18,16 +18,16 @@ module.exports = {
             chainId: 31337,
             blockConfirmations: 1,
         },
-        // goerli: {
-        //     chainId: 5,
-        //     blockConfirmations: 6,
-        //     url: GOERLI_RPC_URL,
-        //     saveDeployments: true,
-        //     accounts: [PRIVATE_KEY1],
-        //     // accounts:{
-        //     //     mnemonic: mnemonic
-        //     // },
-        // },
+        fvm: {
+            chainId: 3141,
+            blockConfirmations: 2,
+            url: FVM_RPC_URL,
+            saveDeployments: true,
+            accounts: [PRIVATE_KEY1],
+            // accounts:{
+            //     mnemonic: mnemonic
+            // },
+        },
     },
     solidity: {
         compilers: [{ version: "0.8.17" }, { version: "0.8.7" }],
@@ -56,7 +56,7 @@ module.exports = {
     },
     etherscan: {
         apiKey: {
-            goerli: ETHERSCAN_API,
+            fvm: FILESCAN_API,
         },
     },
 };

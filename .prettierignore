@@ -1,0 +1,6 @@
+venv
+.env
+cache
+artifacts
+node_modules
+yarn.lock
