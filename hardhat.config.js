@@ -24,7 +24,7 @@ module.exports = {
             blockConfirmations: 2,
             url: FVM_RPC_URL,
             saveDeployments: true,
-            accounts: PRIVATE_KEY1
+            accounts: [PRIVATE_KEY1]
             // accounts:{
             //     mnemonic: mnemonic
             // },
