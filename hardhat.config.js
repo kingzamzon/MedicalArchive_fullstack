@@ -9,6 +9,7 @@ require("dotenv").config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
 const PRIVATE_KEY1 = process.env.PRIVATE_KEY;
+const FVM_RPC_URL= process.env.FVM_RPC_URL;
 // const COINMARKETCAP_API = process.env.COINMARKETCAP_API;
 const FILESCAN_API = process.env.FILESCAN_API;
 module.exports = {
@@ -23,7 +24,7 @@ module.exports = {
             blockConfirmations: 2,
             url: FVM_RPC_URL,
             saveDeployments: true,
-            accounts: [PRIVATE_KEY1],
+            accounts: PRIVATE_KEY1
             // accounts:{
             //     mnemonic: mnemonic
             // },
@@ -37,10 +38,10 @@ module.exports = {
         deployer: {
             default: 0,
             1: 0,
-            5: 0,
+            3141: 0,
         },
         player: {
-            default: 1,
+            default: 3141,
         },
     },
     // gasReporter: {

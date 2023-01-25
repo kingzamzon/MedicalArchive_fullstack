@@ -21,14 +21,13 @@ const { expect, assert } = require("chai");
               });
           });
 
-          describe("add Patint ", () => {
+          describe("add Patient ", () => {
               it("should emit correct user id", async () => {
                   const tx = await MedArchive.addPatient("Ada");
 
                   let receipt = await tx.wait(1);
-                  // console.log(receipt)
-                  let { hospitalAddress, id } = receipt.events[0].args;
-                  assert.equal(id.toString(), 1);
+                  let { hospitalAddress, patientId } = receipt.events[0].args;
+                  assert.equal(patientId.toString(), 1);
               });
           });
       });
