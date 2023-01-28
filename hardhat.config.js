@@ -13,7 +13,7 @@ const FVM_RPC_URL= process.env.FVM_RPC_URL;
 // const COINMARKETCAP_API = process.env.COINMARKETCAP_API;
 const FILESCAN_API = process.env.FILESCAN_API;
 module.exports = {
-    defaultNetwork: "hardhat",
+    defaultNetwork: "fvm",
     networks: {
         hardhat: {
             chainId: 31337,
