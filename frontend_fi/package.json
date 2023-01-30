@@ -11,8 +11,10 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.5",
+    "connectkit": "^1.1.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
+    "ethers": "^5.7.2",
     "express": "^4.18.2",
     "nft.storage": "^7.0.0",
     "node-fetch": "^3.3.0",
@@ -21,6 +23,7 @@
     "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
     "sass": "^1.57.1",
+    "wagmi": "^0.10.15",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

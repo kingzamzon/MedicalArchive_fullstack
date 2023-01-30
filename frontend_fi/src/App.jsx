@@ -2,6 +2,15 @@ import "./index.scss";
 import { RouterProvider, Outlet, createBrowserRouter } from "react-router-dom";
 import pages from "./pages";
 import components from "./components";
+import { WagmiConfig, createClient } from "wagmi";
+import { ConnectKitProvider, ConnectKitButton, getDefaultClient } from "connectkit";
+
+const client = createClient(
+  getDefaultClient({
+    appName: "FI-Cave",
+  
+  }),
+);
 
 const
   SignedOutAppLayout = () => {
@@ -70,9 +79,13 @@ const
 
 function App() {
   return (
-    <section className="container">
-      <RouterProvider router={router} />
-    </section>
+    <WagmiConfig client={client}>
+      <ConnectKitProvider >
+        <section className="container">
+          <RouterProvider router={router} />
+        </section>
+      </ConnectKitProvider>
+    </WagmiConfig>
   );
 }
 

@@ -1,11 +1,34 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import { faHouse, faFolder, faCloudArrowUp, faPaperPlane, faShareNodes, faTrashCan, faBell, faGear, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
+import { ConnectKitButton } from "connectkit";
+import styled from "styled-components";
 import style from "./navbar.module.scss";
 import "./style.css";
 
 const NavbarSignedIn = () => {
-    const user = "defiprince";
+    const [user,setUser] = useState("User");
+    
+    const StyledButton = styled.button`
+    cursor: pointer;
+    height: 49px;
+    width: 200px;
+    border-radius: 45px;
+    font-size: 1.25rem;
+    text-transform: capitalize;
+    margin-top:-25px;
+  
+    transition: 200ms ease;
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 40px -6px #1a88f8;
+    }
+    &:active {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 32px -6px #1a88f8;
+    }
+  `;
 
     return (
         <section className={style.navbar}>
@@ -48,6 +71,18 @@ const NavbarSignedIn = () => {
                                 <FontAwesomeIcon icon={faTrashCan} />
                                 deleted
                             </NavLink>
+                        </li>
+                        <li>
+                        <ConnectKitButton.Custom>
+                            {({ isConnected, show, truncatedAddress, ensName }) => {
+                                return (
+                                <StyledButton onClick={show}>
+                                    {(isConnected ? ensName ?? truncatedAddress : "Connect" && setUser("User")) && (setUser(truncatedAddress))}
+                                    
+                                </StyledButton>
+                                );
+                            }}
+                            </ConnectKitButton.Custom>
                         </li>
                     </ul>
                 </nav>
