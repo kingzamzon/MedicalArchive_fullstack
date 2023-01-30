@@ -1,8 +1,16 @@
 import { faCircleNotch, faFileArrowUp, faSpinner, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NFTStorage, File } from "nft.storage";
+// import fetch from "node-fetch";
+// import fs from "fs";
+// import dotenv from "dotenv";
 import axios from "axios";
 import { useState } from "react";
 import style from "./upload.module.scss";
+
+// dotenv.config()
+
+
 
 const Upload = () => {
     const
@@ -23,32 +31,43 @@ const Upload = () => {
         },
         text = button();
 
+    const [cid , setCid]=useState({hash:"",password:""})
+
     return (
         <div className={style.fileInput}>
+            <input type="text" placeholder="always use same password" id="password" onChange={(event)=>setCid(prev=>{return {...prev,password:event.target.value}})}/>
             <label htmlFor="reciever">upload files to {pathname == "/send" ? "send" : "drive"}</label>
             <div
                 onClick={() => document.querySelector("#upload").click()}>
+                    
                 <div>
+                    
                     <input
                         type="file"
                         onChange={
-                            (event) => {
+                            async(event) => {
+                                const NFT_STORE_API_KEY  =process.env.NFTSTORAGE;
+
+                                const client = new NFTStorage({ token: NFT_STORE_API_KEY });
                                 const file = event.target.files[0];
                                 file.isUploading = true;
                                 setFiles([...files, file]);
-
-                                const formData = new FormData();
-                                formData.append(
-                                    file.name,
-                                    file,
-                                    file.name
-                                );
-
-                                axios
-                                    .post("http://localhost:8000/send", formData)
+                                const icid= await client.storeBlob(file)
+                                
+                                
+                                
+                                const options = {
+                                    method: 'GET',
+                                    headers: { 'content-type': 'application/json' },
+                                    data:{"cid":icid,"password":cid.password},
+                                    url:"https://medarchive2.onrender.com/encode"
+                                  };
+                                  console.log(options.data)
+                                axios(options)
                                     .then((response) => {
                                         file.isUploading = false;
                                         setFiles([...files, file]);
+                                        setCid((prev)=>{return {hash:response.data["hash"],password:""}})
                                     })
                                     .catch((error) => {
                                         console.error(error);
