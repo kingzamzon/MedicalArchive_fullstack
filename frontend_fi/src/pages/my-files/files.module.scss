@@ -1,0 +1,256 @@
+@import "../../index.scss";
+
+.files {
+    position: absolute;
+    left: 30%;
+    top: 150px;
+    color: white;
+    width: 70%;
+    padding-right: 8.5%;
+    padding-bottom: 5%;
+
+    .allFiles {
+        .nav {
+            @include flex($justify:space-between);
+            position: sticky;
+            top: 80px;
+            background-color: $mainBackground;
+            padding: 10px;
+            z-index: 2;
+
+            h4 {
+                font-weight: 500;
+                font-size: 1.75rem;
+                text-transform: capitalize;
+            }
+
+            button {
+                background-color: #EBF2FF;
+                height: 40px;
+                width: 140px;
+                color: #0061FF;
+                text-transform: capitalize;
+                font-size: .875rem;
+                border-radius: 5px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+
+                svg {
+                    padding-right: 5px;
+                }
+            }
+        }
+
+        .filesContainer {
+            min-height: 100%;
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
+            gap: 20px;
+            padding: 0 40px;
+
+            @include breakpoint-max($bp:1650px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @include breakpoint-max($bp:1024px) {
+                grid-template-columns: 1fr;
+            }
+
+            .file {
+                height: 196px;
+                width: max(333px, 100%);
+                background-color: white;
+                border-radius: 20px;
+                color: black;
+                @include flex($direction:column, $justify:space-between);
+                padding: 30px;
+
+                >div {
+                    width: 100%;
+                    @include flex($justify:space-between);
+
+                    &.top {
+                        gap: 10px;
+
+                        >span {
+                            height: 40px;
+                            width: 40px;
+                            @include flex;
+
+                            &:nth-of-type(1) {
+                                background-color: rgb(0, 97, 255, .1);
+                                color: #0061FF;
+                                border-radius: 10px;
+                            }
+
+                            &:nth-of-type(2) {
+                                color: #667085;
+                                font-size: 1.5rem;
+                            }
+                        }
+
+                        >div {
+                            @include flex($direction:column, $align:flex-start);
+                            margin-right: auto;
+
+                            span {
+                                text-transform: capitalize;
+                                font-weight: 500;
+                                font-family: $lato;
+
+                                &:nth-of-type(2) {
+                                    font-size: .875rem;
+                                    color: #667085;
+                                }
+                            }
+                        }
+                    }
+
+                    &.bottom {
+                        align-items: flex-start;
+
+                        >div {
+                            height: 100%;
+                            @include flex($direction:column, $align:flex-start);
+                            gap: 5px;
+
+                            >span {
+                                &:nth-of-type(1) {
+                                    color: #667085;
+                                    font-family: $lato;
+                                    font-size: .875rem;
+                                    text-transform: capitalize;
+                                    padding-left: 2.5px;
+                                }
+                            }
+
+                            &:nth-of-type(1) {
+                                div {
+                                    position: relative;
+                                    width: 150px;
+                                    height: 40px;
+
+                                    span {
+                                        border: 2px solid white;
+                                        height: 36px;
+                                        width: 36px;
+                                        position: absolute;
+                                        border-radius: 10px;
+                                        @include flex;
+                                        overflow: hidden;
+
+                                        img {
+                                            max-width: 100%;
+                                        }
+
+                                        &:nth-of-type(1) {
+                                            left: 0;
+                                        }
+
+                                        &:nth-of-type(2) {
+                                            left: 30px;
+                                        }
+
+                                        &:nth-of-type(3) {
+                                            left: 60px;
+                                        }
+
+                                        &:last-child {
+                                            left: 90px;
+                                            color: #0061FF;
+                                            background-color: #EBF2FF;
+                                            font-family: $lato;
+                                            font-size: .8125rem;
+                                            font-weight: 600;
+                                        }
+                                    }
+                                }
+                            }
+
+                            &:nth-of-type(2) {
+                                height: 100%;
+
+                                div {
+                                    height: 40px;
+
+                                    span {
+                                        height: 36px;
+                                        width: 80px;
+                                        border-radius: 10px;
+                                        background-color: #EBF2FF;
+                                        @include flex;
+                                        color: #0061FF;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .recentFiles {
+        margin-top: 50px;
+
+        >div {
+            @include flex($justify:flex-start);
+
+            &:nth-of-type(1) {
+                padding: 7px;
+                gap: 10px;
+
+                h4 {
+                    font-weight: 500;
+                    font-size: 1.75rem;
+                    text-transform: capitalize;
+                }
+
+                img {
+                    max-width: 40px;
+                }
+            }
+
+            &.recentContainer {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                justify-items: center;
+                gap: 75px;
+                margin-top: 10px;
+
+                @include breakpoint-max($bp:1650px) {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+
+                @include breakpoint-max($bp:1024px) {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                >div {
+                    @include flex($direction:column);
+                    height: 160px;
+                    min-width: 200px;
+                    gap: 2.5px;
+                    cursor: pointer;
+
+                    img {
+                        width: 200px;
+                        height: 130px;
+                    }
+
+                    span {
+                        color: #82CCEC;
+                        font-size: 1.25rem;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

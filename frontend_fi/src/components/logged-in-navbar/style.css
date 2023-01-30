@@ -1,0 +1,22 @@
+.navbar_nav_left__uOtxF nav ul li a {
+    transition: .3s ease-in-out all;
+}
+
+.navbar_nav_left__uOtxF nav ul li a.active {
+    color: rgb(5, 31, 97);
+    font-size: 1.5rem;
+}
+
+.navbar_nav_left__uOtxF nav ul li a.active svg {
+    color: rgb(129, 64, 160);
+    padding-right: 15px;
+    max-width: 25px;
+}
+
+.navbar_nav_left__uOtxF nav ul li a:hover {
+    color: rgb(129, 64, 160);
+}
+
+.navbar_nav_left__uOtxF nav ul li a:hover svg {
+    padding-right: 10px;
+}

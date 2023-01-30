@@ -1,0 +1,141 @@
+@import "../../index.scss";
+
+.navbar {
+    @include flex();
+
+    .nav_left {
+        background-color: white;
+        position: fixed;
+        min-height: 100%;
+        top: 0;
+        left: 0;
+        width: 20%;
+        @include flex($direction:column, $justify:flex-start);
+        gap: 100px;
+
+        h2 {
+            font-size: 2.25rem;
+            color: $purpleText;
+            padding: 20px;
+        }
+
+        nav>ul {
+            @include flex($direction:column);
+            list-style-type: none;
+            gap: 50px;
+            width: 160px;
+
+            li {
+                width: 100%;
+            }
+
+            li>a {
+                font-size: 1.25rem;
+                font-weight: 700;
+                color: $grayText;
+                text-transform: capitalize;
+
+                span {
+                    text-align: left;
+                }
+
+                svg {
+                    max-width: 20px;
+                    padding-right: 7px;
+                    transition: .15s ease all;
+                }
+            }
+        }
+    }
+
+    .nav_right {
+        * {
+            font-family: $lato;
+        }
+
+        @include flex();
+        width: 80%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        padding: 20px 5%;
+        z-index: 3;
+        background-color: $mainBackground;
+
+        h3 {
+            margin-right: auto;
+            color: $grayText;
+            font-weight: 600
+        }
+
+        div {
+            @include flex();
+            gap: 15px;
+
+            span {
+                height: 40px;
+                width: 40px;
+                @include flex();
+                border-radius: 10px;
+                background-color: white;
+                font-size: 1.5rem;
+                color: #051F61;
+                cursor: pointer;
+
+                &:nth-of-type(1) {
+                    width: 340px;
+                    @include flex($justify:space-between);
+                    overflow: hidden;
+                    padding: 0 10px 0 20px;
+                    color: $grayText;
+                    font-size: 1.25rem;
+                    cursor: default;
+
+                    input {
+                        font-size: .875rem;
+                        width: 88%;
+                        height: inherit;
+                        border: none;
+                        color: $grayText;
+                        outline: none;
+                        transition: .3s ease all;
+
+                        &:focus {
+                            font-size: 1.25rem;
+                        }
+                    }
+                }
+
+                &:nth-of-type(2) {
+                    position: relative;
+
+                    &::after {
+                        @include flex;
+                        content: "1";
+                        position: absolute;
+                        height: 15px;
+                        width: 15px;
+                        background-color: #EB5757;
+                        top: 2px;
+                        right: 2px;
+                        border-radius: 50%;
+                        border: 2px solid white;
+                        color: white;
+                        font-size: .7rem;
+                        font-weight: 700;
+                    }
+                }
+
+                &:nth-of-type(4) {
+                    background: none;
+                }
+
+                img {
+                    height: inherit;
+                    width: inherit;
+                    border-radius: inherit;
+                }
+            }
+        }
+    }
+}

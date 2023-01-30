@@ -1,0 +1,49 @@
+@import "../../index.scss";
+
+.notFound {
+    color: white;
+    @include flex();
+    height: 100vh;
+
+    div {
+        @include flex($direction:column);
+        position: relative;
+        height: 100vh;
+
+        img {
+            width: 600px;
+            position: absolute;
+            top: -100px;
+            animation: errror 5s ease-in-out infinite;
+        }
+
+        @keyframes errror {
+
+            0%,
+            100% {
+                transform: rotate(5deg);
+            }
+
+            50% {
+                transform: rotate(-2deg);
+            }
+        }
+
+
+        span {
+            margin-top: 50px;
+            font-size: 3rem;
+            text-align: center;
+
+            a {
+                font-weight: 700;
+                transition: .5s ease all;
+
+                &:hover {
+                    color: #FFF3B2;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

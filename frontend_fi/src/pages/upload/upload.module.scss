@@ -1,0 +1,26 @@
+@import "../../index.scss";
+
+.upload {
+    color: white;
+    position: absolute;
+    width: 70%;
+    top: 150px;
+    right: 0;
+
+    h3 {
+        font-weight: 500;
+        font-size: 1.75rem;
+        text-transform: capitalize;
+        margin-bottom: 50px;
+    }
+
+    >div {
+        width: 80%;
+        padding-left: 2%;
+
+        >div {
+            @include flex($direction:column, $align:flex-start);
+            gap: 15px;
+        }
+    }
+}

@@ -1,0 +1,32 @@
+[
+
+    {
+        "id": 0,
+        "image": "doc.png",
+        "path": "diagnosis/magret.pdf"
+    },
+
+    {
+        "id": 1,
+        "image": "pdf.png",
+        "path": "x-ray/peter.doc"
+    },
+
+    {
+        "id": 2,
+        "image": "doc.png",
+        "path": "donor/all.xls"
+    },
+
+    {
+        "id": 3,
+        "image": "pdf.png",
+        "path": "maternity/35.xlsb"
+    },
+
+    {
+        "id": 4,
+        "image": "doc.png",
+        "path": "check-up/UNN.mdb"
+    }
+]

@@ -1,0 +1,38 @@
+@import "../../index.scss";
+
+.navbar {
+    @include flex($justify:space-between);
+    color: white;
+    padding: 20px 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    background-color: $mainBackground;
+    z-index: 2;
+
+    div {
+        font-size: 2.25rem;
+    }
+
+    nav>ul {
+        @include flex;
+        gap: 30px;
+        list-style-type: none;
+
+        li {
+            font-size: 1.25rem;
+            text-transform: capitalize;
+        }
+    }
+
+    >a {
+        border: 1px solid;
+        height: 50px;
+        width: 200px;
+        border-radius: 45px;
+        font-size: 1.25rem;
+        text-transform: capitalize;
+        @include flex;
+    }
+}
