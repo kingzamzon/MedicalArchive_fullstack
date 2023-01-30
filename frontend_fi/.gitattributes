@@ -1,0 +1,9 @@
+frontend_fi/src/index.scss linguist-vendored
+frontend_fi/src/components/logged-out-navbar/navbar.module.scss linguist-vendored
+frontend_fi/src/components/logged-in-navbar/navbar.module.scss linguist-vendored
+frontend_fi/src/components/upload/upload.module.scss linguist-vendored
+frontend_fi/src/pages/landing/landing.module.scss linguist-vendored
+frontend_fi/src/pages/my-files/files.module.scss linguist-vendored
+frontend_fi/src/pages/not-found/notFound.module.scss linguist-vendored
+frontend_fi/src/pages/send/send.module.scss linguist-vendored
+frontend_fi/src/pages/upload/upload.module.scss linguist-vendored
