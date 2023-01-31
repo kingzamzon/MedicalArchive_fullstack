@@ -35,7 +35,7 @@ const Upload = () => {
 
     return (
         <div className={style.fileInput}>
-            <input type="text" placeholder="always use same password" id="password" onChange={(event)=>setCid(prev=>{return {...prev,password:event.target.value}})}/>
+            <input type="password" placeholder="always use same password" id="password" value={cid.password} onChange={(event)=>setCid(prev=>{return {...prev,password:event.target.value}})}/>
             <label htmlFor="reciever">upload files to {pathname == "/send" ? "send" : "drive"}</label>
             <div
                 onClick={() => document.querySelector("#upload").click()}>
@@ -46,8 +46,7 @@ const Upload = () => {
                         type="file"
                         onChange={
                             async(event) => {
-                                const NFT_STORE_API_KEY  =process.env.NFTSTORAGE;
-
+                                const NFT_STORE_API_KEY  =process.env.REACT_APP_NFT_STORAGE;
                                 const client = new NFTStorage({ token: NFT_STORE_API_KEY });
                                 const file = event.target.files[0];
                                 file.isUploading = true;
