@@ -106,6 +106,7 @@ def create_app(test_config=None):
 
     @app.errorhandler(400)
     def bad_request(error):
+        print(error)
         return jsonify(
             {
                 "status": 400, 
