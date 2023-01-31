@@ -29,14 +29,14 @@ def create_app(test_config=None):
         except Exception as e:
             abort(403)
 
-    @app.after_request
-    def after_request(response):
-        response.headers.add(
-            "Access-Control-Allow-Headers", "Content-Type,Authorization,true"
-        )
-        response.headers.add("Access-Control-Allow-Methods", "GET")
-        response.headers.add("Access-Control-Allow-Origin", request.headers['Origin'])
-        return response
+    # @app.after_request
+    # def after_request(response):
+    #     response.headers.add(
+    #         "Access-Control-Allow-Headers", "Content-Type,Authorization,true"
+    #     )
+    #     response.headers.add("Access-Control-Allow-Methods", "GET")
+    #     response.headers.add("Access-Control-Allow-Origin", request.headers['Origin'])
+    #     return response
 
     @app.route("/encode", methods=["GET"])
     def encrypt_data():
