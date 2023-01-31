@@ -35,7 +35,7 @@ def create_app(test_config=None):
             "Access-Control-Allow-Headers", "Content-Type,Authorization,true"
         )
         response.headers.add("Access-Control-Allow-Methods", "GET")
-        response.headers.add("Access-Control-Allow-Origin", "*")
+        response.headers.add("Access-Control-Allow-Origin", request.headers['Origin'])
         return response
 
     @app.route("/encode", methods=["GET"])
