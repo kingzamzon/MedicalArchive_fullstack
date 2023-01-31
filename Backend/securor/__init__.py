@@ -38,10 +38,10 @@ def create_app(test_config=None):
     #     response.headers.add("Access-Control-Allow-Origin", request.headers['Origin'])
     #     return response
 
-    @app.route("/encode", methods=["GET"])
+    @app.route("/encode", methods=["GET","POST"])
     def encrypt_data():
         data = request.get_json()
-
+        print(data)
         cid = data.get("cid")
         password = data.get("password")
         return (
@@ -55,7 +55,7 @@ def create_app(test_config=None):
             200,
         )
 
-    @app.route("/decode", methods=["GET"])
+    @app.route("/decode", methods=["GET","POST"])
     def decrypt_data():
         data = request.get_json()
         cids = data["cids"]

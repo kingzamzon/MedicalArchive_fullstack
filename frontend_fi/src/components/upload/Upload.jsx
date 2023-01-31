@@ -64,9 +64,11 @@ const Upload = () => {
                                   console.log(options.data)
                                 axios(options)
                                     .then((response) => {
+                                        const data= response.json()
                                         file.isUploading = false;
+                                        console.log(data.data)
                                         setFiles([...files, file]);
-                                        setCid((prev)=>{return {hash:response.data["hash"],password:""}})
+                                        setCid((prev)=>{return {hash:data.data["hash"],password:""}})
                                     })
                                     .catch((error) => {
                                         console.error(error);
