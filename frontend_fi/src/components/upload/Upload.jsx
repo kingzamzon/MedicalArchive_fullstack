@@ -33,6 +33,7 @@ const Upload = () => {
 
     const [cid , setCid]=useState({hash:"",password:""})
 
+
     return (
         <div className={style.fileInput}>
             <input type="password" placeholder="always use same password" id="password" value={cid.password} onChange={(event)=>setCid(prev=>{return {...prev,password:event.target.value}})}/>
@@ -56,19 +57,19 @@ const Upload = () => {
                                 
                                 
                                 const options = {
-                                    method: 'GET',
+                                    method: 'POST',
                                     headers: { 'content-type': 'application/json' },
                                     data:{"cid":icid,"password":cid.password},
                                     url:"https://medarchive2.onrender.com/encode"
                                   };
-                                  console.log(options.data)
-                                axios(options)
+                                  
+                                await axios(options)
                                     .then((response) => {
-                                        const data= response.json()
+                                        
                                         file.isUploading = false;
-                                        console.log(data.data)
                                         setFiles([...files, file]);
-                                        setCid((prev)=>{return {hash:data.data["hash"],password:""}})
+                                        setCid({hash:response.data.hash,password:""})
+                                        
                                     })
                                     .catch((error) => {
                                         console.error(error);

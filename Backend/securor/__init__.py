@@ -41,7 +41,6 @@ def create_app(test_config=None):
     @app.route("/encode", methods=["GET","POST"])
     def encrypt_data():
         data = request.get_json()
-        print(data)
         cid = data.get("cid")
         password = data.get("password")
         return (
