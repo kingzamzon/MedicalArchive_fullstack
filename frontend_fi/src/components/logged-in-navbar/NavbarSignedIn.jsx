@@ -74,10 +74,10 @@ const NavbarSignedIn = () => {
                         </li>
                         <li>
                         <ConnectKitButton.Custom>
-                            {({ isConnected, show, truncatedAddress, ensName }) => {
+                            {({ isConnected, show, truncatedAddress }) => {
                                 return (
                                 <StyledButton onClick={show}>
-                                    {(isConnected ? ensName ?? truncatedAddress : "Connect" && setUser("User")) && (setUser(truncatedAddress))}
+                                    {(isConnected ? truncatedAddress : "Connect" && setUser("User")) && (setUser(truncatedAddress))}
                                     
                                 </StyledButton>
                                 );

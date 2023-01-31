@@ -3,12 +3,15 @@ import { RouterProvider, Outlet, createBrowserRouter } from "react-router-dom";
 import pages from "./pages";
 import components from "./components";
 import { WagmiConfig, createClient } from "wagmi";
-import { ConnectKitProvider, ConnectKitButton, getDefaultClient } from "connectkit";
+import { filecoinHyperspace } from "wagmi/chains";
+import { ConnectKitProvider, getDefaultClient } from "connectkit";
 
+
+const chains=[filecoinHyperspace]
 const client = createClient(
   getDefaultClient({
     appName: "FI-Cave",
-  
+    chains:chains
   }),
 );
 

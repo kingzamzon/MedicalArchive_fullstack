@@ -49,10 +49,10 @@ const NavbarSignedOut = () => {
             </nav>
 
             <Link><ConnectKitButton.Custom>
-                            {({ isConnected, show, truncatedAddress, ensName }) => {
+                            {({ isConnected, show, truncatedAddress }) => {
                                 return (
                                 <StyledButton onClick={show}>
-                                    {isConnected ? ensName ?? truncatedAddress : "Connect"}
+                                    {isConnected ? truncatedAddress : "Connect"}
                                     
                                 </StyledButton>
                                 );
