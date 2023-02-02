@@ -64,6 +64,10 @@ const
           element: <pages.Files />
         },
         {
+          path: "/register",
+          element: <pages.RegisterPatient />
+        },
+        {
           path: "/send",
           element: <pages.Send />
         },

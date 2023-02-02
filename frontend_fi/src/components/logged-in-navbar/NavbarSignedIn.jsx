@@ -49,6 +49,12 @@ const NavbarSignedIn = () => {
                             </NavLink>
                         </li>
                         <li>
+                            <NavLink to={"/register"}>
+                            <FontAwesomeIcon icon={faGear} />
+                                register Patient
+                            </NavLink>
+                        </li>
+                        <li>
                             <NavLink to={"/upload"}>
                                 <FontAwesomeIcon icon={faCloudArrowUp} />
                                 upload
