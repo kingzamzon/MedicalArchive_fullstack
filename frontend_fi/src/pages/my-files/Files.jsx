@@ -1,5 +1,6 @@
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NavLink } from "react-router-dom";
 import style from "./files.module.scss";
 import File from "./component/File";
 import Recent from "./component/Recent";
@@ -12,8 +13,11 @@ const Files = () => {
                 <div className={style.nav}>
                     <h4>all records</h4>
                     <button>
+                    <NavLink to={"/upload"}>
                         <FontAwesomeIcon icon={faAdd} />
+                        
                         add new
+                    </NavLink>
                     </button>
                 </div>
                 <div className={style.filesContainer}>

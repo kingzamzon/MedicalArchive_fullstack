@@ -41,7 +41,7 @@ const RegisterPatient = () => {
                         )}
                     </span>
                 </button>
-                <span>{isSuccess && `Patient Id ${data}`}</span>
+                <span>{isSuccess && `Patient Id ${data.events[0].args}`}</span>
             </form>
         </section>
     );
