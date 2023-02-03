@@ -4,6 +4,7 @@ import Send from "./send/Send";
 import NotFound from "./not-found/NotFound";
 import Upload from "./upload/Upload";
 import RegisterPatient from "./register-patient/RegisterPatient";
+import Record from "./record/Record";
 
 export default {
     Landing,
@@ -11,5 +12,6 @@ export default {
     Send,
     NotFound,
     Upload,
-    RegisterPatient
+    RegisterPatient,
+    Record
 };

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { faHouse, faFolder, faCloudArrowUp, faPaperPlane, faShareNodes, faTrashCan, faBell, faGear, faMagnifyingGlass, faPassport } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faFolder, faCloudArrowUp, faPaperPlane, faShareNodes, faBell, faGear, faMagnifyingGlass, faPassport, faClipboardUser, faBoxesPacking } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import { ConnectKitButton } from "connectkit";
 import style from "./navbar.module.scss";
@@ -46,15 +46,15 @@ const NavbarSignedIn = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/shared"}>
-                                <FontAwesomeIcon icon={faShareNodes} />
-                                shared
+                            <NavLink to={"/record"}>
+                                <FontAwesomeIcon icon={faClipboardUser} />
+                                records
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/deleted"}>
-                                <FontAwesomeIcon icon={faTrashCan} />
-                                deleted
+                            <NavLink to={"/archive"}>
+                                <FontAwesomeIcon icon={faBoxesPacking} />
+                                archive
                             </NavLink>
                         </li>
                         <li>

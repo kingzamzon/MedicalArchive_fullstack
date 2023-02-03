@@ -1,0 +1,82 @@
+@import "../../index.scss";
+
+.record {
+    position: absolute;
+    width: 70%;
+    right: 0;
+    top: 150px;
+    color: white;
+    @include flex($direction:column, $align:flex-start);
+    gap: 35px;
+
+    h3 {
+        font-weight: 500;
+        font-size: 1.75rem;
+        text-transform: capitalize;
+    }
+
+    form {
+        width: 80%;
+        @include flex($direction:column, $align:flex-start);
+        gap: 30px;
+
+        >div {
+            width: 100%;
+
+            label {
+                font-weight: 500;
+                text-transform: capitalize;
+                font-size: 1.25rem;
+                margin-bottom: 7px;
+                display: inline-block;
+            }
+
+            input {
+                height: 88px;
+                padding: 20px;
+                font-size: 1.25rem;
+                font-weight: 500;
+                outline: none;
+                color: rgba(255, 255, 255, .56);
+                background-color: transparent;
+                transition: .25s ease all;
+                width: 100%;
+                border-radius: 25px;
+                border: 1.5px solid #532A9D;
+
+                &:focus {
+                    font-size: 2rem;
+                }
+            }
+
+            input[type="number"] {
+                appearance: textfield;
+
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                    margin: 0;
+                    appearance: none;
+                }
+            }
+
+            &:nth-of-type(3) {
+                @include flex();
+                margin-top: 40%;
+
+                button {
+                    font-weight: 500;
+                    text-transform: capitalize;
+                    font-size: 1.25rem;
+                    width: 30%;
+                    height: 50px;
+                    border-radius: 5px;
+                    border: none;
+                    outline: none;
+                    background-color: #532A9D;
+                    color: white;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

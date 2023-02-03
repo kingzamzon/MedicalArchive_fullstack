@@ -75,6 +75,10 @@ const
         {
           path: "/upload",
           element: <pages.Upload />
+        },
+        {
+          path: "/record",
+          element: <pages.Record />
         }
       ]
     },
