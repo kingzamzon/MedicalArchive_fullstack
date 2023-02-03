@@ -1,0 +1,137 @@
+@import "../../index.scss";
+
+.archive {
+    position: absolute;
+    width: 70%;
+    right: 0;
+    top: 150px;
+    color: white;
+    @include flex($direction:column, $align:flex-start);
+    gap: 35px;
+
+    form {
+        width: 80%;
+        @include flex($direction:column, $align:flex-start);
+        gap: 35px;
+
+        >div {
+            @include flex($direction:column, $align:flex-start);
+            gap: 7px;
+            width: 100%;
+
+            label {
+                font-weight: 500;
+                text-transform: capitalize;
+                font-size: 1.25rem;
+            }
+
+            >div {
+                &:nth-of-type(1) {
+                    height: 110px;
+                    padding: 20px;
+                    font-size: 1.25rem;
+                    font-weight: 500;
+                    outline: none;
+                    color: rgba(255, 255, 255, .56);
+                    background-color: transparent;
+                    width: 100%;
+                    border-radius: 25px;
+                    border: 3px dotted #532A9D;
+                    cursor: pointer;
+                    @include flex($justify:space-between);
+
+                    span {
+                        font-size: 1.25rem;
+                        font-weight: 500;
+
+                        svg {
+                            font-size: 2.2rem;
+                        }
+                    }
+                }
+            }
+
+            &:nth-of-type(2) {
+                >input {
+                    height: 88px;
+                    padding: 20px;
+                    font-size: 1.25rem;
+                    font-weight: 500;
+                    outline: none;
+                    color: rgba(255, 255, 255, .56);
+                    background-color: transparent;
+                    transition: .25s ease all;
+                    width: 100%;
+                    border-radius: 25px;
+                    border: 1.5px solid #532A9D;
+
+                    &:focus {
+                        font-size: 2rem;
+                    }
+                }
+
+                input[type="number"] {
+                    appearance: textfield;
+
+                    &::-webkit-outer-spin-button,
+                    &::-webkit-inner-spin-button {
+                        margin: 0;
+                        appearance: none;
+                    }
+                }
+
+                >div {
+                    all: unset;
+                    width: 100%;
+                    @include flex($justify:space-between);
+                    color: #9BDEDE;
+
+                    span {
+                        &:nth-of-type(1) {
+                            padding-left: 30px;
+                        }
+
+                        &:nth-of-type(2) {
+                            padding-right: 30px;
+                        }
+                    }
+                }
+            }
+
+            &:nth-of-type(3) {
+                textarea {
+                    resize: none;
+                    height: 88px;
+                    padding: 20px;
+                    font-size: 1.25rem;
+                    outline: none;
+                    color: rgba(255, 255, 255, .56);
+                    background-color: transparent;
+                    width: 100%;
+                    border-radius: 25px;
+                    border: 1.5px solid #532A9D;
+                }
+            }
+
+            &:nth-of-type(4) {
+                @include flex;
+                width: 100%;
+                margin-top: 50px;
+
+                button {
+                    background-color: transparent;
+                    outline: none;
+                    border: 1.5px solid #532A9D;
+                    width: 405px;
+                    height: 60px;
+                    border-radius: 25px;
+                    font-weight: 500;
+                    text-transform: capitalize;
+                    font-size: 1.75rem;
+                    color: white;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

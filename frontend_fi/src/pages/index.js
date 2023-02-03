@@ -5,6 +5,7 @@ import NotFound from "./not-found/NotFound";
 import Upload from "./upload/Upload";
 import RegisterPatient from "./register-patient/RegisterPatient";
 import Record from "./record/Record";
+import Archive from "./archive/Archive";
 
 export default {
     Landing,
@@ -13,5 +14,6 @@ export default {
     NotFound,
     Upload,
     RegisterPatient,
-    Record
+    Record,
+    Archive
 };

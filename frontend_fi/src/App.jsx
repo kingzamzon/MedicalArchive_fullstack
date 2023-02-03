@@ -79,6 +79,10 @@ const
         {
           path: "/record",
           element: <pages.Record />
+        },
+        {
+          path: "/archive",
+          element: <pages.Archive />
         }
       ]
     },
