@@ -9,7 +9,7 @@ const Landing = () => {
             <p>
                 <span>Decen</span>tralized medical <span>documentation</span> system, easy to use, secured and fast share!
             </p>
-            <p>Send, recieve and share files & documents with your <span>wallet address</span></p>
+            <p>Send, recieve and share files & documents with your wall<span>et address</span></p>
 
             <div>
                 <div>

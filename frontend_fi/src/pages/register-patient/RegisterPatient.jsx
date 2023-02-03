@@ -17,8 +17,8 @@ const RegisterPatient = () => {
     });
     return (
         <section className={style.send}>
-            <h3>Add/Record new Patient</h3>
-            <small>Patient Id will be given after adding patient</small>
+            <h3>register new patient</h3>
+            <small>Patient ID will be given after registration</small>
             <form className={style.form}>
                 <input
                     name="name"
@@ -34,14 +34,16 @@ const RegisterPatient = () => {
                         await writeAsync();
                     }}
                 >
-                    Add Patient
+                    register
                     <span>
                         {isLoading && (
                             <FontAwesomeIcon icon={faSpinner} className={style.spinner} />
                         )}
                     </span>
                 </button>
-                <span>{isSuccess && `Patient Id ${data.events[0].args}`}</span>
+                <div>
+                    <span>patient ID: {isSuccess && `Patient Id ${data.events[0].args}`}</span>
+                </div>
             </form>
         </section>
     );

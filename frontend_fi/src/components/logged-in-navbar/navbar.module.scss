@@ -27,22 +27,41 @@
 
             li {
                 width: 100%;
-            }
+                @include flex($justify:flex-start);
 
-            li>a {
-                font-size: 1.25rem;
-                font-weight: 700;
-                color: $grayText;
-                text-transform: capitalize;
+                a {
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                    color: $grayText;
+                    text-transform: capitalize;
 
-                span {
-                    text-align: left;
+                    span {
+                        text-align: left;
+                    }
+
+                    svg {
+                        max-width: 20px;
+                        padding-right: 7px;
+                        transition: .15s ease all;
+                    }
                 }
 
-                svg {
-                    max-width: 20px;
-                    padding-right: 7px;
-                    transition: .15s ease all;
+                button {
+                    height: 50px;
+                    width: 100%;
+                    border: 2px solid #051F61;
+                    background-color: transparent;
+                    font-size: 1.25rem;
+                    border-radius: 50px;
+                    margin-top: 80%;
+                    cursor: pointer;
+                    transition: 200ms ease;
+
+                    &:hover {
+                        transform: translateY(-3px);
+                        scale: 1.1;
+                        box-shadow: 0 5px 40px -10px rgb(26, 136, 248, .3);
+                    }
                 }
             }
         }

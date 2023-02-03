@@ -1,34 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { faHouse, faFolder, faCloudArrowUp, faPaperPlane, faShareNodes, faTrashCan, faBell, faGear, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faFolder, faCloudArrowUp, faPaperPlane, faShareNodes, faTrashCan, faBell, faGear, faMagnifyingGlass, faPassport } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import { ConnectKitButton } from "connectkit";
-import styled from "styled-components";
 import style from "./navbar.module.scss";
 import "./style.css";
 
 const NavbarSignedIn = () => {
-    const [user,setUser] = useState("User");
-    
-    const StyledButton = styled.button`
-    cursor: pointer;
-    height: 49px;
-    width: 200px;
-    border-radius: 45px;
-    font-size: 1.25rem;
-    text-transform: capitalize;
-    margin-top:-25px;
-  
-    transition: 200ms ease;
-    &:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 6px 40px -6px #1a88f8;
-    }
-    &:active {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 32px -6px #1a88f8;
-    }
-  `;
+    const [user, setUser] = useState("User");
 
     return (
         <section className={style.navbar}>
@@ -50,8 +29,8 @@ const NavbarSignedIn = () => {
                         </li>
                         <li>
                             <NavLink to={"/register"}>
-                            <FontAwesomeIcon icon={faGear} />
-                                register Patient
+                                <FontAwesomeIcon icon={faPassport} />
+                                register
                             </NavLink>
                         </li>
                         <li>
@@ -79,15 +58,20 @@ const NavbarSignedIn = () => {
                             </NavLink>
                         </li>
                         <li>
-                        <ConnectKitButton.Custom>
-                            {({ isConnected, show, truncatedAddress }) => {
-                                return (
-                                <StyledButton onClick={show}>
-                                    {(isConnected ? truncatedAddress : "Connect" && setUser("User")) && (setUser(truncatedAddress))}
-                                    
-                                </StyledButton>
-                                );
-                            }}
+                            <ConnectKitButton.Custom>
+                                {({ isConnected, show, truncatedAddress }) => {
+                                    return (
+                                        <button onClick={show}>
+                                            {isConnected ? user : "Connect"}
+                                            {
+                                                (isConnected
+                                                    ? truncatedAddress
+                                                    : "Connect" && setUser("User"))
+                                                && (setUser(truncatedAddress))
+                                            }
+                                        </button>
+                                    );
+                                }}
                             </ConnectKitButton.Custom>
                         </li>
                     </ul>

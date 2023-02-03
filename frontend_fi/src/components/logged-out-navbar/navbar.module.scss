@@ -7,12 +7,14 @@
     position: fixed;
     width: 100%;
     top: 0;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
     background-color: $mainBackground;
     z-index: 2;
 
-    div {
-        font-size: 2.25rem;
+    h1 {
+        font-size: 2rem;
+        font-family: $syne;
+        font-weight: 600;
+        color: #FFF3B2;
     }
 
     nav>ul {
@@ -21,7 +23,7 @@
         list-style-type: none;
 
         li {
-            font-size: 1.25rem;
+            font-size: 1rem;
             text-transform: capitalize;
         }
     }
@@ -34,5 +36,10 @@
         font-size: 1.25rem;
         text-transform: capitalize;
         @include flex;
+        overflow: hidden;
+
+        button {
+            all: inherit;
+        }
     }
 }

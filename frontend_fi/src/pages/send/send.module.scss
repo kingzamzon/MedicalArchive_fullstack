@@ -23,27 +23,59 @@
             @include flex($direction:column, $align:flex-start);
             gap: 15px;
 
-            label {
-                font-weight: 500;
-                text-transform: capitalize;
-                font-size: 1.25rem;
+            &:nth-of-type(1) {
+                label {
+                    font-weight: 500;
+                    text-transform: capitalize;
+                    font-size: 1.25rem;
+                }
+
+                input {
+                    height: 88px;
+                    padding: 20px;
+                    font-size: 1.25rem;
+                    font-weight: 500;
+                    outline: none;
+                    color: rgba(255, 255, 255, .56);
+                    background-color: transparent;
+                    transition: .25s ease all;
+                    width: 100%;
+                    border-radius: 25px;
+                    border: 1.5px solid #532A9D;
+
+                    &:focus {
+                        font-size: 2rem;
+                    }
+                }
+
+                input[type="number"] {
+                    appearance: textfield;
+
+                    &::-webkit-outer-spin-button,
+                    &::-webkit-inner-spin-button {
+                        margin: 0;
+                        appearance: none;
+                    }
+                }
             }
 
-            input {
-                height: 88px;
-                padding: 20px;
-                font-size: 1.25rem;
-                font-weight: 500;
-                outline: none;
-                color: rgba(255, 255, 255, .56);
-                background-color: transparent;
-                transition: .25s ease all;
-                width: 100%;
-                border-radius: 25px;
-                border: 1.5px solid #532A9D;
+            &:nth-of-type(2) {
+                align-items: center;
+                margin-top: 75px;
 
-                &:focus {
-                    font-size: 2rem;
+                button {
+                    @include flex;
+                    font-weight: 500;
+                    text-transform: capitalize;
+                    font-size: 1.25rem;
+                    width: 30%;
+                    height: 50px;
+                    border-radius: 5px;
+                    border: none;
+                    outline: none;
+                    background-color: #532A9D;
+                    color: white;
+                    cursor: pointer;
                 }
             }
         }

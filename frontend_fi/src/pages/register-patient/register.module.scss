@@ -18,34 +18,48 @@
     .form {
         width: 80%;
         padding-left: 5%;
+        @include flex($direction:column, $align:center);
+        gap: 50px;
 
-        >div {
-            @include flex($direction:column, $align:flex-start);
-            gap: 15px;
+        input {
+            height: 88px;
+            padding: 20px;
+            font-size: 1.25rem;
+            font-weight: 500;
+            outline: none;
+            color: rgba(255, 255, 255, .56);
+            background-color: transparent;
+            transition: .25s ease all;
+            width: 100%;
+            border-radius: 25px;
+            border: 1.5px solid #532A9D;
 
-            label {
-                font-weight: 500;
-                text-transform: capitalize;
-                font-size: 1.25rem;
+            &:focus {
+                font-size: 2rem;
             }
+        }
+    }
 
-            input {
-                height: 88px;
-                padding: 20px;
-                font-size: 1.25rem;
-                font-weight: 500;
-                outline: none;
-                color: rgba(255, 255, 255, .56);
-                background-color: transparent;
-                transition: .25s ease all;
-                width: 100%;
-                border-radius: 25px;
-                border: 1.5px solid #532A9D;
+    button {
+        @include flex;
+        font-weight: 500;
+        text-transform: capitalize;
+        font-size: 1.25rem;
+        width: 30%;
+        height: 50px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        background-color: #532A9D;
+        color: white;
+        cursor: pointer;
+    }
 
-                &:focus {
-                    font-size: 2rem;
-                }
-            }
+    div {
+        width: 100%;
+
+        span {
+            text-transform: capitalize;
         }
     }
 }

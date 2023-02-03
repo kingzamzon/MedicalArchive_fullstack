@@ -1,9 +1,4 @@
-import {
-    faCircleNotch,
-    faFileArrowUp,
-    faSpinner,
-    faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+import { faFileArrowUp, faSpinner, faTrash, } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NFTStorage } from "nft.storage";
 import { address, abi } from "../../constants";
@@ -13,30 +8,41 @@ import { useState } from "react";
 import style from "./upload.module.scss";
 
 const Upload = () => {
-    const [files, setFiles] = useState([]),
+    const
+        [files, setFiles] = useState([]),
+
         removeFile = (fileName) => {
             setFiles(files.filter((file) => file.name != fileName));
         },
+
         deleteFile = (_name) => {
             removeFile(_name);
         },
+
         pathname = window.location.pathname,
+
         button = function () {
             let text = pathname == "/send" ? "send" : "upload";
             return text;
         },
-        text = button();
 
-    const [cid, setCid] = useState({ patientId: "", description: "", hash: "", password: "" });
+        text = button(),
 
-    const { data, isLoading, isSuccess, writeAsync } = useContractWrite({
-        mode: "recklesslyUnprepared",
-        address: address[3141].address,
-        chainId: 3141,
-        abi: abi,
-        args: [cid.patientId, cid.description, cid.hash],
-        functionName: "addRecord",
-    });
+        [cid, setCid] = useState({
+            patientId: "",
+            description: "",
+            hash: "",
+            password: ""
+        }),
+
+        { data, isLoading, isSuccess, writeAsync } = useContractWrite({
+            mode: "recklesslyUnprepared",
+            address: address[3141].address,
+            chainId: 3141,
+            abi: abi,
+            args: [cid.patientId, cid.description, cid.hash],
+            functionName: "addRecord",
+        });
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -66,27 +72,29 @@ const Upload = () => {
                 value={cid.password}
                 onChange={handleChange}
             />
-            <label htmlFor="reciever">
-                upload files to {pathname == "/send" ? "send" : "drive"}
-            </label>
             <div onClick={() => document.querySelector("#upload").click()}>
                 <div>
                     <input
                         type="file"
                         onChange={async (event) => {
-                            const NFT_STORE_API_KEY = process.env.REACT_APP_NFT_STORAGE;
-                            const client = new NFTStorage({ token: NFT_STORE_API_KEY });
-                            const file = event.target.files[0];
+                            const
+                                NFT_STORE_API_KEY = process.env.REACT_APP_NFT_STORAGE,
+
+                                client = new NFTStorage({ token: NFT_STORE_API_KEY }),
+
+                                file = event.target.files[0];
+
                             file.isUploading = true;
                             setFiles([...files, file]);
-                            const icid = await client.storeBlob(file);
+                            const
+                                icid = await client.storeBlob(file),
 
-                            const options = {
-                                method: "POST",
-                                headers: { "content-type": "application/json" },
-                                data: { cid: icid, password: cid.password },
-                                url: "https://medarchive2.onrender.com/encode",
-                            };
+                                options = {
+                                    method: "POST",
+                                    headers: { "content-type": "application/json" },
+                                    data: { cid: icid, password: cid.password },
+                                    url: "https://medarchive2.onrender.com/encode",
+                                };
                             await axios(options)
                                 .then((response) => {
                                     file.isUploading = false;

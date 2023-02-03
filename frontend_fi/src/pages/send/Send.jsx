@@ -6,16 +6,21 @@ import { useContractWrite } from "wagmi";
 import { address, abi } from "../../constants";
 
 const Send = () => {
-    const [shareData, setShareData] = useState({ to: "", patientId: "", recordId: "" });
+    const
+        [shareData, setShareData] = useState({
+            to: "",
+            patientId: "",
+            recordId: ""
+        }),
 
-    const { isLoading, isSuccess, writeAsync } = useContractWrite({
-        mode: "recklesslyUnprepared",
-        address: address[3141].address,
-        chainId: 3141,
-        abi: abi,
-        args: [shareData.to, shareData.patientId, shareData.recordId],
-        functionName: "sharePatientsRecord",
-    });
+        { isLoading, isSuccess, writeAsync } = useContractWrite({
+            mode: "recklesslyUnprepared",
+            address: address[3141].address,
+            chainId: 3141,
+            abi: abi,
+            args: [shareData.to, shareData.patientId, shareData.recordId],
+            functionName: "sharePatientsRecord",
+        });
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -37,34 +42,35 @@ const Send = () => {
                     />
                     <input
                         type="number"
-                        placeholder="Patient Id"
+                        placeholder="Patient ID"
                         name="patientId"
                         value={shareData.patientId}
                         onChange={handleChange}
                     />
                     <input
                         type="number"
-                        placeholder="Record Id to share"
+                        placeholder="Record ID"
                         name="recordId"
                         value={shareData.recordId}
                         onChange={handleChange}
                     />
                 </div>
-                <button
-                    disabled={!writeAsync}
-                    onClick={async (event) => {
-                        event.preventDefault();
-                        await writeAsync();
-                    }}
-                >
-                    Share Record
-                    <span>
-                        {isLoading && (
-                            <FontAwesomeIcon icon={faSpinner} className={style.spinner} />
-                        )}
-                    </span>
-                    <span>{isSuccess && "Sent"}</span>
-                </button>
+                <div>
+                    <button
+                        disabled={!writeAsync}
+                        onClick={async (event) => {
+                            event.preventDefault();
+                            await writeAsync();
+                        }}>
+                        send record
+                        <span>
+                            {isLoading && (
+                                <FontAwesomeIcon icon={faSpinner} className={style.spinner} />
+                            )}
+                        </span>
+                        <span>{isSuccess && "Sent"}</span>
+                    </button>
+                </div>
             </form>
         </section>
     );

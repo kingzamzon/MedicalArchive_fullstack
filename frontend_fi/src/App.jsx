@@ -7,15 +7,16 @@ import { filecoinHyperspace } from "wagmi/chains";
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
 
 
-const chains=[filecoinHyperspace]
-const client = createClient(
-  getDefaultClient({
-    appName: "FI-Cave",
-    chains:chains
-  }),
-);
-
 const
+  chains = [filecoinHyperspace],
+
+  client = createClient(
+    getDefaultClient({
+      appName: "FI-Cave",
+      chains: chains
+    }),
+  ),
+
   SignedOutAppLayout = () => {
     return (
       <>

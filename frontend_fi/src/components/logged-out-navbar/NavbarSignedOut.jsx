@@ -1,35 +1,11 @@
 import style from "./navbar.module.scss";
 import { Link } from "react-router-dom";
 import { ConnectKitButton } from "connectkit";
-import styled from "styled-components";
 
 const NavbarSignedOut = () => {
-
-    const StyledButton = styled.button`
-  cursor: pointer;
-  color: #ffffff;
-  background: inherit;
-  height: 49px;
-  width: 200px;
-  border-radius: 45px;
-  font-size: 1.25rem;
-  text-transform: capitalize;
-  @include flex;
-
-  transition: 200ms ease;
-  &:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 6px 40px -6px #1a88f8;
-  }
-  &:active {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 32px -6px #1a88f8;
-  }
-`;
-
     return (
-        <section className={style.navbar} >
-            <div>FiCave</div>
+        <section className={style.navbar}>
+            <h1>FiCave</h1>
 
             <nav>
                 <ul>
@@ -49,15 +25,14 @@ const NavbarSignedOut = () => {
             </nav>
 
             <Link><ConnectKitButton.Custom>
-                            {({ isConnected, show, truncatedAddress }) => {
-                                return (
-                                <StyledButton onClick={show}>
-                                    {isConnected ? truncatedAddress : "Connect"}
-                                    
-                                </StyledButton>
-                                );
-                            }}
-                            </ConnectKitButton.Custom></Link>
+                {({ isConnected, show, truncatedAddress }) => {
+                    return (
+                        <button onClick={show}>
+                            {isConnected ? truncatedAddress : "Connect"}
+                        </button>
+                    );
+                }}
+            </ConnectKitButton.Custom></Link>
         </section>
     );
 };
