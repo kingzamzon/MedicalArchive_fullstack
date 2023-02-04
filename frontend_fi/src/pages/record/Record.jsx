@@ -1,6 +1,6 @@
 import style from "./record.module.scss";
 import { address,abi } from "../../constants";
-import { useContractRead } from "wagmi";
+import { useContractRead , useAccount} from "wagmi";
 import { useState } from "react";
 
 const Record = () => {
@@ -9,11 +9,12 @@ const Record = () => {
         patientID:"",
         recordID:""
     })
+    const {address}=useAccount()
+    console.log(address)
 
-    const {userData,setUserData}=useState([])
+    const [userData,setUserData]=useState([])
     console.log(userData)
-    function useGetData(event){
-        event.preventDefault()
+
     const{data}=  useContractRead({
         mode: "recklesslyUnprepared",
         address: address[3141].address,
@@ -21,10 +22,9 @@ const Record = () => {
         abi: abi,
         args: inputs.recordID!= "" ? [inputs.patientID,inputs.recordID]:[inputs.patientID],
         functionName: inputs.recordID!=""? "getPatientRecord":"getPatientRecords",
+        overrides:{from:address},
         onError(error){console.log(error)}
     })
-    setUserData(data)
-    }
     const handleChange=(event)=>{
         const {name, value}=event.target;
         setInputs(prev=>({...prev,[name]:value}));
@@ -55,7 +55,11 @@ const Record = () => {
                     />
                 </div>
                 <div>
-                    <button onClick={useGetData}>load</button>
+                    <button onClick={(event)=>{
+                            event.preventDefault()
+                            
+                            setUserData(data)
+                    }}>load</button>
                 </div>
             </form>
         </section>
