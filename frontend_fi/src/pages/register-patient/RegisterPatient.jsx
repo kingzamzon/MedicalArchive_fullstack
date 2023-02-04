@@ -32,6 +32,7 @@ const RegisterPatient = () => {
                     onClick={async (event) => {
                         event.preventDefault();
                         await writeAsync();
+                        console.log(data, await data)
                     }}
                 >
                     register
@@ -42,7 +43,13 @@ const RegisterPatient = () => {
                     </span>
                 </button>
                 <div>
-                    <span>patient ID: {isSuccess && `Patient Id ${data}`}</span>
+                    <span>patient ID: {isSuccess && `Patient Id ${useWaitForTransaction({
+                        hash: data?.hash,
+                        onSettled(data, error) {
+                            const response = data ? data.logs : []
+                            return response
+                        }
+                    })}`}</span>
                 </div>
             </form>
         </section>
