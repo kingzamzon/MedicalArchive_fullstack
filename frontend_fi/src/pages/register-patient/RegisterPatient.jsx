@@ -47,11 +47,11 @@ const RegisterPatient = () => {
                         )}
                     </span>
                 </button>
-                <div>
+                <div>{data.events[0].args}
                     <span>patient ID: {`Patient Id ${id} ${useWaitForTransaction({
                         hash: data?.hash,
                         onSettled(data, error) {
-                            console.log(data.logs[0].patientId)
+                            console.log(data.events[0].args)
                             const response = data ? data.logs[0] : []
                             console.log(response)
                             setId(response)
