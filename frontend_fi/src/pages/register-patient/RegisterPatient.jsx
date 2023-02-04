@@ -37,7 +37,7 @@ const RegisterPatient = () => {
                         event.preventDefault();
                         await write();
                         
-                        console.log(data,"")
+                        console.log(data.wait(1).logs[0].patientId,"")
                     }}
                 >
                     register
@@ -51,6 +51,7 @@ const RegisterPatient = () => {
                     <span>patient ID: {`Patient Id ${id} ${useWaitForTransaction({
                         hash: data?.hash,
                         onSettled(data, error) {
+                            console.log(data.logs[0].args,data.logs[0][1])
                             const response = data ? data.logs[0] : []
                             console.log(response)
                             setId(response)
