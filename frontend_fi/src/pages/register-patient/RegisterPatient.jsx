@@ -25,6 +25,7 @@ const RegisterPatient = () => {
         eventName: 'PatientAdded',
         listener(node, label, owner) {
           console.log(node, label, owner)
+          setId(label[1])
         },
       })
     return (
