@@ -7,6 +7,7 @@ import style from "./register.module.scss";
 
 const RegisterPatient = () => {
     const [patientName, setPatientName] = useState("");
+    const [id,setId]=useState("");
     const { data, isLoading, isSuccess, writeAsync } = useContractWrite({
         mode: "recklesslyUnprepared",
         address: address[3141].address,
@@ -32,7 +33,9 @@ const RegisterPatient = () => {
                     onClick={async (event) => {
                         event.preventDefault();
                         await writeAsync();
-                        console.log(data, await data)
+                        console.log(await data?.wait(1))
+                        setId(await data?.wait(1))
+                        
                     }}
                 >
                     register
@@ -43,13 +46,15 @@ const RegisterPatient = () => {
                     </span>
                 </button>
                 <div>
-                    <span>patient ID: {`Patient Id ${useWaitForTransaction({
+                    <span>patient ID: {`Patient Id ${id} ${useWaitForTransaction({
                         hash: data?.hash,
                         onSettled(data, error) {
                             const response = data ? data.logs : []
-                            return response
+                            console.log(response)
+                            setId(response)
                         }
-                    })}`}</span>
+                        
+                    })}` {id}}</span>
                 </div>
             </form>
         </section>
