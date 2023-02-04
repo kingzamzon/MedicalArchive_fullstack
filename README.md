@@ -1,7 +1,7 @@
 # Medical Records Archive
 
 
-# FiCave(Insurance but with DEFI)
+# FiCave
 
 > ## Table of Contents
 - [Project Details](#project-description)
