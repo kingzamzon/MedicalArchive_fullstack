@@ -8,13 +8,16 @@ import style from "./register.module.scss";
 const RegisterPatient = () => {
     const [patientName, setPatientName] = useState("");
     const [id,setId]=useState("");
-    const { data, isLoading, isSuccess, writeAsync } = useContractWrite({
+    const { data, isLoading, isSuccess, write } = useContractWrite({
         mode: "recklesslyUnprepared",
         address: address[3141].address,
         chainId: 3141,
         abi: abi,
         args: [patientName],
         functionName: "addPatient",
+        onSettled(data, error) {
+            console.log('Settled', { data, error })
+        },
     });
     return (
         <section className={style.send}>
@@ -29,13 +32,12 @@ const RegisterPatient = () => {
                     placeholder="Patients Name"
                 />
                 <button
-                    disabled={!writeAsync}
+                    disabled={!write}
                     onClick={async (event) => {
                         event.preventDefault();
-                        await writeAsync();
-                        console.log(await data.wait(1).logs[0])
-                        setId(await data.wait(1).logs[0])
+                        await write();
                         
+                        console.log(data,"")
                     }}
                 >
                     register
@@ -50,7 +52,7 @@ const RegisterPatient = () => {
                         hash: data?.hash,
                         onSettled(data, error) {
                             const response = data ? data.logs[0] : []
-                            console.log(response.patientId)
+                            console.log(response)
                             setId(response)
                         }
                         
