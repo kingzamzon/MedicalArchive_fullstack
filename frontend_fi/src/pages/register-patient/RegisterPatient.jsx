@@ -1,7 +1,7 @@
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { address, abi } from "../../constants";
-import { useContractWrite } from "wagmi";
+import { useContractWrite,useWaitForTransaction } from "wagmi";
 import { useState } from "react";
 import style from "./register.module.scss";
 
