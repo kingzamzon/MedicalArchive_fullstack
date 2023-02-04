@@ -58,7 +58,7 @@ const RegisterPatient = () => {
                     </span>
                 </button>
                 <div>
-                    <span>patient ID: {id.isWaiting? <FontAwesomeIcon icon={faSpinner} className={style.spinner} />:`${id}`}</span>
+                    <span>patient ID: {id.isWaiting? <FontAwesomeIcon icon={faSpinner} className={style.spinner} />:`${id.id}`}</span>
                 </div>
             </form>
         </section>
