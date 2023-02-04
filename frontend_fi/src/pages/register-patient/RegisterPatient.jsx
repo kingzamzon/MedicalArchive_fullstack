@@ -37,7 +37,7 @@ const RegisterPatient = () => {
                         event.preventDefault();
                         await write();
                         
-                        console.log(data.wait,"")
+                    
                     }}
                 >
                     register
@@ -47,7 +47,7 @@ const RegisterPatient = () => {
                         )}
                     </span>
                 </button>
-                <div>{console.log(data.logs[0].args)}
+                <div>
                     <span>patient ID: {`Patient Id ${id} ${useWaitForTransaction({
                         hash: data?.hash,
                         onSettled(data, error) {
