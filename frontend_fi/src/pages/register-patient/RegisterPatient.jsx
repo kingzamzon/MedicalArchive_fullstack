@@ -54,7 +54,7 @@ const RegisterPatient = () => {
                             setId(response)
                         }
                         
-                    })}` {id}}</span>
+                    })}`}</span>
                 </div>
             </form>
         </section>
