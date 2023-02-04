@@ -57,7 +57,7 @@ const RegisterPatient = () => {
                     </span>
                 </button>
                 <div>
-                    <span>patient ID: {`Patient Id ${id}`}</span>
+                    <span>patient ID: {`${id}`}</span>
                 </div>
             </form>
         </section>
