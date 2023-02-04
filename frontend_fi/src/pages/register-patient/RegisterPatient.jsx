@@ -1,7 +1,7 @@
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { address, abi } from "../../constants";
-import { useContractWrite,useWaitForTransaction } from "wagmi";
+import { useContractWrite,useContractEvent } from "wagmi";
 import { useState } from "react";
 import style from "./register.module.scss";
 
@@ -19,6 +19,14 @@ const RegisterPatient = () => {
             console.log('Settled', { data, error })
         },
     });
+    useContractEvent({
+        address: address[3141].address,
+        abi: abi,
+        eventName: 'PatientAdded',
+        listener(node, label, owner) {
+          console.log(node, label, owner)
+        },
+      })
     return (
         <section className={style.send}>
             <h3>register new patient</h3>
@@ -48,16 +56,7 @@ const RegisterPatient = () => {
                     </span>
                 </button>
                 <div>
-                    <span>patient ID: {`Patient Id ${id} ${useWaitForTransaction({
-                        hash: data?.hash,
-                        onSettled(data, error) {
-                            console.log(data.logs)
-                            const response = data ? data.logs[0].topics[1] : []
-                            console.log(response)
-                            setId(response)
-                        }
-                        
-                    })}`}</span>
+                    <span>patient ID: {`Patient Id ${id}`}</span>
                 </div>
             </form>
         </section>
