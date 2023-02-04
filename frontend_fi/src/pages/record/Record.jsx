@@ -12,7 +12,8 @@ const Record = () => {
 
     const {userData,setUserData}=useState([])
     console.log(userData)
-    function useGetData(){
+    function useGetData(event){
+        event.preventDefault()
     const{data}=  useContractRead({
         mode: "recklesslyUnprepared",
         address: address[3141].address,
