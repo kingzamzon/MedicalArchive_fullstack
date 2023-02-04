@@ -26,7 +26,7 @@ const RegisterPatient = () => {
         eventName: 'PatientAdded',
         listener(node, label, owner) {
           console.log({"1":node, "2":label, "3":owner})
-          setId(prev=>({...prev,id:label}))
+          setId({isWaiting:false,id:label})
         },
       })
     return (
@@ -58,7 +58,7 @@ const RegisterPatient = () => {
                     </span>
                 </button>
                 <div>
-                    <span>patient ID: {isWaiting? <FontAwesomeIcon icon={faSpinner} className={style.spinner} />:`${id}`}</span>
+                    <span>patient ID: {id.isWaiting? <FontAwesomeIcon icon={faSpinner} className={style.spinner} />:`${id}`}</span>
                 </div>
             </form>
         </section>
