@@ -33,8 +33,8 @@ const RegisterPatient = () => {
                     onClick={async (event) => {
                         event.preventDefault();
                         await writeAsync();
-                        console.log(await data?.wait(1))
-                        setId(await data?.wait(1))
+                        console.log(await data.wait(1).logs[0])
+                        setId(await data.wait(1).logs[0])
                         
                     }}
                 >
@@ -49,8 +49,8 @@ const RegisterPatient = () => {
                     <span>patient ID: {`Patient Id ${id} ${useWaitForTransaction({
                         hash: data?.hash,
                         onSettled(data, error) {
-                            const response = data ? data.logs : []
-                            console.log(response)
+                            const response = data ? data.logs[0] : []
+                            console.log(response.patientId)
                             setId(response)
                         }
                         
