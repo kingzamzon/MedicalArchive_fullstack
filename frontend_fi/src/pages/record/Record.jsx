@@ -35,10 +35,11 @@ const Record = () => {
                 <div>
                     <label htmlFor="patientID">patient ID</label>
                     <input
-                        name="patientId"
+                        name="patientID"
                         value={inputs.patientID}
                         onChange={handleChange}
-                        type="text"
+                        type="number"
+
                         placeholder='0X63HSha749404'
                     />
                 </div>

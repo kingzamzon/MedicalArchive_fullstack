@@ -7,8 +7,8 @@ import style from "./register.module.scss";
 
 const RegisterPatient = () => {
     const [patientName, setPatientName] = useState("");
-    const [id,setId]=useState("");
-    const { data, isLoading, isSuccess, write } = useContractWrite({
+    const [id,setId]=useState({id:"",isWaiting:false});
+    const { data, isLoading, write } = useContractWrite({
         mode: "recklesslyUnprepared",
         address: address[3141].address,
         chainId: 3141,
@@ -17,6 +17,7 @@ const RegisterPatient = () => {
         functionName: "addPatient",
         onSettled(data, error) {
             console.log('Settled', { data, error })
+            setId(prev=>({...prev,isWaiting:true}))
         },
     });
     useContractEvent({
@@ -25,7 +26,7 @@ const RegisterPatient = () => {
         eventName: 'PatientAdded',
         listener(node, label, owner) {
           console.log({"1":node, "2":label, "3":owner})
-          setId(label)
+          setId(prev=>({...prev,id:label}))
         },
       })
     return (
@@ -57,7 +58,7 @@ const RegisterPatient = () => {
                     </span>
                 </button>
                 <div>
-                    <span>patient ID: {`${id}`}</span>
+                    <span>patient ID: {isWaiting? <FontAwesomeIcon icon={faSpinner} className={style.spinner} />:`${id}`}</span>
                 </div>
             </form>
         </section>
