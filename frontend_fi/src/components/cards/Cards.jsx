@@ -1,9 +1,10 @@
 
-const Records=({id, date, description, cid})=>{
+const Cards=({id, date, description, cid})=>{
     return(
         <div>
             <img
                 src={`https://ipfs.io/ipfs/${cid}`}
+                alt={cid}
             />
             <p>{description}</p>
             <span> {`id:${id}`}</span><span>{date}</span>
@@ -12,4 +13,4 @@ const Records=({id, date, description, cid})=>{
     )
 }
 
-export default Records
+export default Cards

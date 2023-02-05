@@ -1,5 +1,8 @@
 import style from "./record.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { address as addr,abi } from "../../constants";
+import components from "../../components"
 import { useContractRead , useAccount} from "wagmi";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -9,7 +12,9 @@ const Record = () => {
     const [inputs,setInputs]=useState({
         patientID:"",
         recordID:"",
-        password:""
+        password:"",
+        loading:false,
+        show:false
     })
     const {address}=useAccount()
 
@@ -23,6 +28,7 @@ const Record = () => {
     },[hashes])
 
     const processHashes=async()=>{
+        setInputs(prev=>({...prev,loading:true}))
         const encryptedHashes=userData.map((record)=>record.cid)
         const options = {
             method: "POST",
@@ -39,7 +45,7 @@ const Record = () => {
             .catch((error) => {
                 console.error(error);
             });
-        
+        setInputs(prev=>({...prev,show:true}))
     }
     const contractRead=  useContractRead({
         mode: "recklesslyUnprepared",
@@ -58,6 +64,13 @@ const Record = () => {
         const {name, value}=event.target;
         setInputs(prev=>({...prev,[name]:value}));
     }
+    const RecordComponents= userData.map((data)=>
+    (<components.Cards
+        id={data.id.toString()}
+        date={data.date.toString()}
+        cid={data.cid}
+        description={data.description}
+        />))
     return (
         <section className={style.record}>
             <h3>access patient record</h3>
@@ -82,8 +95,6 @@ const Record = () => {
                         type="number"
                         placeholder='Optional'
                     />
-                </div>
-                <div>
                     <label htmlFor="password">Password</label>
                     <input
                         name="password"
@@ -97,9 +108,11 @@ const Record = () => {
                     <button onClick={async(event)=>{
                             event.preventDefault()
                             await processHashes()
-                    }}>load</button>
+                            setInputs(prev=>({...prev,loading:false}))
+                    }}>{inputs.loading? <FontAwesomeIcon icon={faSpinner} className={style.spinner}/>:"load"}</button>
                 </div>
             </form>
+            {inputs.show && <div>{RecordComponents}</div>}
         </section>
     );
 };
