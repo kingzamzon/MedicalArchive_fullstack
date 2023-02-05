@@ -93,6 +93,8 @@ Our mission is to make medical records and data more  accessible and safe using 
 
     - Decrypt a list of Fernet hashed nd return the Cids of the decrypted hashes to render on our frontwnd [see here](https://github.com/Godhanded/MedicalArchive_fullstack/blob/main/Backend/securor/__init__.py#L57)
 
+    - See Backend Documentation [here](https://github.com/Godhanded/MedicalArchive_fullstack/blob/main/Backend/README.md)
+
 - ### **NFT.Storage/IPFS**
     - TWe used the nft.storage npm packed to interact and upload files to ipfs[see here](https://github.com/Godhanded/MedicalArchive_fullstack/blob/main/frontend_fi/src/components/upload/Upload.jsx#L92) 
 
