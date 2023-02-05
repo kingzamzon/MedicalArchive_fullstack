@@ -10,7 +10,7 @@ const Cards=({id, date, description, cid})=>{
             />
            </a>
             <p>{description}</p>
-            <section style={{display:"flex",flexDirection:"row",justifyContent:"spaceBetween"}}>
+            <section style={{display:"flex",flexDirection:"row",justifyContent:'space-between'}}>
             <span> {`id: ${id}`}</span><span >{(new Date(date*1000)).toDateString()}</span>
 		</section>
         </div>
