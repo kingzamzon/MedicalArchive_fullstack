@@ -97,6 +97,16 @@ function App() {
   return (
     <WagmiConfig client={client}>
       <ConnectKitProvider >
+        <section className="query">
+          <div>
+            <span>👋</span>
+            <p>
+              <b>Hi</b>, this app is currently not supported on mobile.
+              <br />
+              Please switch to a Tablet or larger. Thanks!
+            </p>
+          </div>
+        </section>
         <section className="container">
           <RouterProvider router={router} />
         </section>
