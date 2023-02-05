@@ -23,7 +23,7 @@ $grayText:#757897;
 // fonts
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;900&display=swap');
 
 $dmSans:'DM Sans',
 sans-serif;
@@ -42,6 +42,49 @@ sans-serif;
 body {
     background-color: $mainBackground;
 
+    .query {
+        font-size: 1rem;
+        color: $grayText;
+        @include flex;
+        min-height: 100vh;
+
+        div {
+            @include flex($direction:column);
+            gap: 10px;
+
+            span {
+                font-size: clamp(2rem, 2rem + 4.6875vw, 5rem);
+                animation: wave 2s ease-in-out infinite;
+            }
+
+            p {
+                font-family: $syne;
+                font-size: clamp(1rem, 1rem + 3.125vw, 3rem);
+                padding: 1rem;
+
+                b {
+                    font-weight: 900;
+                }
+            }
+
+            @keyframes wave {
+
+                0%,
+                100% {
+                    transform: rotate(5deg);
+                }
+
+                50% {
+                    transform: rotate(-2deg);
+                }
+            }
+        }
+
+        @media only screen and (min-device-width : 1024px) {
+            display: none;
+        }
+    }
+
     .container {
         min-height: 100%;
         position: relative;
@@ -50,6 +93,10 @@ body {
             text-decoration: none;
             color: inherit;
             font-size: inherit;
+        }
+
+        @media only screen and (min-device-width : 0px) and (max-device-width : 1024px) {
+            display: none;
         }
     }
 
