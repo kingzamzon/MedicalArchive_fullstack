@@ -2,7 +2,7 @@ import style from "./record.module.scss";
 import { address as addr,abi } from "../../constants";
 import { useContractRead , useAccount} from "wagmi";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Record = () => {
 
@@ -15,10 +15,15 @@ const Record = () => {
 
     const [userData,setUserData]=useState([])
     const [hashes,setHashes]=useState([])
-    console.log(userData)
+
+
+    useEffect(()=>{
+        const decryptedHashes=userData.map((record,index)=>({...record,cid:hashes[index]}))
+        setUserData(decryptedHashes)
+    },[hashes])
 
     const processHashes=async()=>{
-        const encryptedHashes=userData.map((record)=>record?.cid)
+        const encryptedHashes=userData.map((record)=>record.cid)
         const options = {
             method: "POST",
             headers: { "content-type": "application/json" },
@@ -27,16 +32,16 @@ const Record = () => {
         };
         await axios(options)
             .then((response) => {
+                console.log(response.data)
                 setInputs(prev=>({...prev,password:""}))
                 setHashes(response.data.cids);
             })
             .catch((error) => {
                 console.error(error);
             });
-        const decryptedHashes=userData.map((record,index)=>({...record,cid:hashes[index]}))
-        setUserData(decryptedHashes)
+        
     }
-    const{data}=  useContractRead({
+    const contractRead=  useContractRead({
         mode: "recklesslyUnprepared",
         address: addr[3141].address,
         chainId: 3141,
@@ -44,6 +49,9 @@ const Record = () => {
         args: inputs.recordID!= "" ? [inputs.patientID,inputs.recordID]:[inputs.patientID],
         functionName: inputs.recordID!=""? "getPatientRecord":"getPatientRecords",
         overrides:{from:address},
+        onSuccess(data){
+            setUserData(data)
+        },
         onError(error){console.log(error)}
     })
     const handleChange=(event)=>{
@@ -88,7 +96,6 @@ const Record = () => {
                 <div>
                     <button onClick={async(event)=>{
                             event.preventDefault()
-                            setUserData(data)
                             await processHashes()
                     }}>load</button>
                 </div>
