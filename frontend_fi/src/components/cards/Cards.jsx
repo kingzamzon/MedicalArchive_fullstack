@@ -2,13 +2,17 @@
 const Cards=({id, date, description, cid})=>{
     return(
         <div>
+        <a href={`https://ipfs.io/ipfs/${cid}`} target="_blank" rel="noreferrer">
             <img
                 src={`https://ipfs.io/ipfs/${cid}`}
                 alt={cid}
+                style={{maxWidth:"300px"}}
             />
+           </a>
             <p>{description}</p>
-            <span> {`id:${id}`}</span><span>{date}</span>
-
+            <section style={{display:"flex",flexDirection:"row",justifyContent:"spaceBetween"}}>
+            <span> {`id: ${id}`}</span><span >{(new Date(date*1000)).toDateString()}</span>
+		</section>
         </div>
     )
 }

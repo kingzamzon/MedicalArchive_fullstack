@@ -8,7 +8,7 @@ import style from "./register.module.scss";
 const RegisterPatient = () => {
     const [patientName, setPatientName] = useState("");
     const [id,setId]=useState({id:"",isWaiting:false});
-    const { data, isLoading, write } = useContractWrite({
+    const { data, isLoading, writeAsync } = useContractWrite({
         mode: "recklesslyUnprepared",
         address: address[3141].address,
         chainId: 3141,
@@ -42,10 +42,10 @@ const RegisterPatient = () => {
                     placeholder="Patients Name"
                 />
                 <button
-                    disabled={!write}
+                    disabled={!writeAsync}
                     onClick={async (event) => {
                         event.preventDefault();
-                        await write();
+                        await writeAsync();
                         
                     
                     }}

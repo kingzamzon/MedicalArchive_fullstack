@@ -112,7 +112,7 @@ const Record = () => {
                     }}>{inputs.loading? <FontAwesomeIcon icon={faSpinner} className={style.spinner}/>:"load"}</button>
                 </div>
             </form>
-            {inputs.show && <div>{RecordComponents}</div>}
+            {inputs.show && <div style={{display:"flex",flexDirection:"row",gap:"15px"}}>{RecordComponents}</div>}
         </section>
     );
 };
