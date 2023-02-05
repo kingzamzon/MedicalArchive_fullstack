@@ -1,23 +1,44 @@
 import style from "./record.module.scss";
-import { address,abi } from "../../constants";
+import { address as addr,abi } from "../../constants";
 import { useContractRead , useAccount} from "wagmi";
+import axios from "axios";
 import { useState } from "react";
 
 const Record = () => {
 
     const [inputs,setInputs]=useState({
         patientID:"",
-        recordID:""
+        recordID:"",
+        password:""
     })
     const {address}=useAccount()
-    console.log(address)
 
     const [userData,setUserData]=useState([])
+    const [hashes,setHashes]=useState([])
     console.log(userData)
 
+    const processHashes=async()=>{
+        const encryptedHashes=userData.map((record)=>record?.cid)
+        const options = {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            data: { cids: encryptedHashes, password: inputs.password },
+            url: "https://medarchive2.onrender.com/decode",
+        };
+        await axios(options)
+            .then((response) => {
+                setInputs(prev=>({...prev,password:""}))
+                setHashes(response.data.cids);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        const decryptedHashes=userData.map((record,index)=>({...record,cid:hashes[index]}))
+        setUserData(decryptedHashes)
+    }
     const{data}=  useContractRead({
         mode: "recklesslyUnprepared",
-        address: address[3141].address,
+        address: addr[3141].address,
         chainId: 3141,
         abi: abi,
         args: inputs.recordID!= "" ? [inputs.patientID,inputs.recordID]:[inputs.patientID],
@@ -55,10 +76,20 @@ const Record = () => {
                     />
                 </div>
                 <div>
-                    <button onClick={(event)=>{
+                    <label htmlFor="password">Password</label>
+                    <input
+                        name="password"
+                        value={inputs.password}
+                        onChange={handleChange}
+                        type="password"
+                        placeholder='always use same password'
+                    />
+                </div>
+                <div>
+                    <button onClick={async(event)=>{
                             event.preventDefault()
-                            
                             setUserData(data)
+                            await processHashes()
                     }}>load</button>
                 </div>
             </form>
