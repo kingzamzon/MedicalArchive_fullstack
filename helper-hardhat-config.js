@@ -1,4 +1,3 @@
-const { ethers } = require("hardhat");
 
 const networkConfig = {
     31337: {

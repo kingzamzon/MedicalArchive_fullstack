@@ -39,7 +39,7 @@ Files uploaded on Ficave can also be made open-source to serve as  research mate
 - **Github** > [https://github.com/Godhanded/MedicalArchive_fullstack](https://github.com/Godhanded/MedicalArchive_fullstack)
 
 - **Contract** > 
-    - Hyperspace_fvm [0xF281Afb262bA65fbD9d4BCfb2539aF1D064231ca](https://hyperspace.filfox.info/en/address/0xF281Afb262bA65fbD9d4BCfb2539aF1D064231ca)
+    - Hyperspace_fvm [0x92134fF22E609B9A630e9f2528cF3D9E7bc210d3](https://testnet.ftmscan.com/address/0x92134fF22E609B9A630e9f2528cF3D9E7bc210d3#code)
 
     - Contract Code [here](https://github.com/Godhanded/MedicalArchive_fullstack/blob/main/contracts/MedArchive.sol)
 
@@ -80,7 +80,7 @@ Our mission is to make medical records and data more  accessible and safe using 
  | **`React`**         | Frontend                   |
  | **`NFT.Storage/IPFS`**| file upload/retrieval  |
  | **`Wagmi Kit`**       | contract calls       |
- | **`Filecoin Hyperspace Chain`** | Main contract deployed/Tracks all records|
+ | **`Fantom Testnet Chain`** | Main contract deployed/Tracks all records|
  | **`Python Flask`**| Encrypt/Decrypt uploaded Records for contract to store|
 
 - ### **Solidity smart contracts**

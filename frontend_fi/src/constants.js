@@ -1,7 +1,7 @@
 const address={
     3141: {
-        name: "Hyperspace_fvm",
-        address: "0xF281Afb262bA65fbD9d4BCfb2539aF1D064231ca",
+        name: "fantomTestnet",
+        address: "0x92134fF22E609B9A630e9f2528cF3D9E7bc210d3",
         url: "https://hyperspace.filfox.info/en/address/0xF281Afb262bA65fbD9d4BCfb2539aF1D064231ca",
     }
 }

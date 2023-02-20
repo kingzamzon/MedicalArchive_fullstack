@@ -3,12 +3,12 @@ import { RouterProvider, Outlet, createBrowserRouter } from "react-router-dom";
 import pages from "./pages";
 import components from "./components";
 import { WagmiConfig, createClient } from "wagmi";
-import { filecoinHyperspace } from "wagmi/chains";
+import { fantomTestnet } from "wagmi/chains";
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
 
 
 const
-  chains = [filecoinHyperspace],
+  chains = [fantomTestnet],
 
   client = createClient(
     getDefaultClient({
